@@ -17,6 +17,8 @@ public class Graphics {
     public ImageIcon [] alphabet;
     public ImageIcon blank;
     public ImageIcon reset;
+    public ImageIcon death;
+    public ImageIcon happy;
     // If something goes wrong while loading graphics this come true
     public static boolean resourceError = false;
 
@@ -27,6 +29,8 @@ public class Graphics {
         body = getGraphic(screenWidth, screenHeight, "Body.png");
         arms = getGraphic(screenWidth, screenHeight, "Arms.png");
         legs = getGraphic(screenWidth, screenHeight, "Legs.png");
+        death = getGraphic(screenWidth, screenHeight, "Death.png");
+        happy = getGraphic(screenWidth, screenHeight, "Happy.png");
         alphabet = getAlphabet(lettersWidth, lettersHeight);
         reset = getReset(resetWidth, resetHeight);
     }
@@ -60,7 +64,6 @@ public class Graphics {
 
         try {
             for (int index = 0; index < alphabet.length; index++) {
-                System.out.print(chars[index]);
                 ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource(chars[index] + ".png")));
                 Image image = icon.getImage().getScaledInstance((int)(width/9), (int)(height*0.2), Image.SCALE_SMOOTH);
                 alphabet[index] = new ImageIcon(image);

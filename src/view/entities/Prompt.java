@@ -1,4 +1,5 @@
 package view.entities;
+import controller.entities.Errors;
 import view.View;
 import view.entities.gResources.Graphics;
 
@@ -53,21 +54,24 @@ public class Prompt extends JPanel{
 
     }
 
+    public void reset(String word){
+        show(word);
+    }
+
     public void setCharAt(int index, char c){
 
         if(getLetter(c) == null){
-            view.errorHandling("A non-supported character was input: " + c);
+            view.errorHandling(Errors.INTERNAL_ERROR_VIEW ,"in Prompt");
             return;
         }
         letters[index].changeIcon(getLetter(c));
-
     }
 
     private ImageIcon getLetter(char letter){
         char [] chars = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray();
         ImageIcon icon = null;
         for(int index = 0; index < chars.length; index++){
-            if(chars[index] == letter || chars[index] == Character.toUpperCase(letter)){
+            if(chars[index] == Character.toUpperCase(letter)){
                 icon = g.alphabet[index];
             }
         }

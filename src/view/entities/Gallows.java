@@ -1,5 +1,4 @@
 package view.entities;
-import view.View;
 import view.entities.gResources.Graphics;
 
 import javax.swing.JLabel;
@@ -8,13 +7,11 @@ import java.awt.FlowLayout;
 import java.awt.Color;
 
 public class Gallows {
-    private JPanel panel;
-    private JLabel label;
-    private Graphics g;
-    private Window window;
+    private final JPanel panel;
+    private final JLabel label;
+    private final Graphics g;
 
-    public Gallows(int width, int height, int posX, int posY, Graphics g, View view) {
-
+    public Gallows(int width, int height, int posX, int posY, Graphics g) {
 
         panel = new JPanel();
         panel.setBackground(Color.BLACK);
@@ -36,11 +33,12 @@ public class Gallows {
         return panel;
     }
 
+    public void reset(){
+        label.setIcon(g.gallows);
+    }
+
     public void setLabel(int scene) {
         switch (scene){
-            case 0:
-                label.setIcon(g.gallows);
-                break;
             case 1:
                 label.setIcon(g.head);
                 break;
@@ -48,15 +46,21 @@ public class Gallows {
                 label.setIcon(g.body);
                 break;
             case 3:
+                label.setIcon(g.arms);
+                break;
+            case 4:
                 label.setIcon(g.legs);
                 break;
+            case 5:
+                label.setIcon(g.death);
+                break;
+            case 6:
+                label.setIcon(g.happy);
+                break;
             default:
-                label.setIcon(g.arms);
+                label.setIcon(g.gallows);
         }
 
     }
 
-    public JLabel getLabel() {
-        return label;
-    }
 }

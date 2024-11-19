@@ -9,7 +9,11 @@ import java.awt.Color;
 public class Window {
 
     private final View view;
+    private final JFrame frame;
     private final Prompt prompt;
+    private final Gallows gallows;
+    private final Letters letters;
+    private final ResetButton resetButton;
 
     // The width and the height of the frame
     public static final int width = 1400;
@@ -42,13 +46,13 @@ public class Window {
     public Window(View view) {
 
         // Setting up Frame
-        JFrame frame = new JFrame();
-        frame.setLayout(null);
-        frame.setResizable(false);
-        frame.setSize(width, height);
-        frame.setLocationRelativeTo(null);
-        frame.getContentPane().setBackground(Color.BLACK);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame = new JFrame();
+        this.frame.setLayout(null);
+        this.frame.setResizable(false);
+        this.frame.setSize(width, height);
+        this.frame.setLocationRelativeTo(null);
+        this.frame.getContentPane().setBackground(Color.BLACK);
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Setting view
         this.view = view;
@@ -57,19 +61,38 @@ public class Window {
         Graphics graphics = new Graphics(width, height, gallowsWidth, gallowsHeight, resetWidth, resetHeight, view);
 
         // Setting up components
-        Gallows gallows = new Gallows(gallowsWidth, gallowsHeight, gallowsPosX, gallowsPosY, graphics, view);
-        Letters letters = new Letters(lettersWidth, lettersHeight, lettersPosX, lettersPosY, graphics);
+        this.gallows = new Gallows(gallowsWidth, gallowsHeight, gallowsPosX, gallowsPosY, graphics);
+        this.letters = new Letters(lettersWidth, lettersHeight, lettersPosX, lettersPosY, graphics, view);
         this.prompt = new Prompt(graphics, promptHeight, promptWidth, width, promptPosY, view);
-        ResetButton resetButton = new ResetButton(resetWidth, resetHeight, resetPosX, resetPosY, graphics, view);
+        this.resetButton = new ResetButton(resetWidth, resetHeight, resetPosX, resetPosY, graphics, view);
 
         frame.add(gallows.getPanel());
         frame.add(letters.getPanel());
         frame.add(prompt.getPanel());
         frame.add(resetButton);
-        prompt.show("12345678901234567");
 
         // Making frame visible
         frame.setVisible(true);
+    }
+
+    // Changes the Gallows scene
+    public void changeGallows(int scene){
+        gallows.setLabel(scene);
+    }
+
+    public void promptWord(String prompt) {
+        this.prompt.show(prompt);
+    }
+
+    public void reset(String word){
+        prompt.reset(word);
+        gallows.reset();
+        letters.reset();
+        frame.setVisible(true);
+    }
+
+    public void changeLetters(int index, boolean color){
+        letters.changeLetter(index, color);
     }
 
     // Method to change a character in a certain position of the prompt
