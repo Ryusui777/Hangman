@@ -22,7 +22,7 @@ public class Window {
     // The width and the height of the gallows panel
     public static final int gallowsWidth = (int)(width * 0.5);
     public static final int gallowsHeight = (int)(height * 0.5);
-    public static final int gallowsPosX = (int)(width*0.55);
+    public static final int gallowsPosX = (int)(width*0.52);
     public static final int gallowsPosY = (int)(height * 0.3 - gallowsHeight*0.5);
 
     // The width and the height of the letters panel
@@ -58,7 +58,7 @@ public class Window {
         this.view = view;
 
         // Loading graphics
-        Graphics graphics = new Graphics(width, height, gallowsWidth, gallowsHeight, resetWidth, resetHeight, view);
+        Graphics graphics = new Graphics(gallowsWidth, gallowsHeight, lettersWidth, lettersHeight, resetWidth, resetHeight, view);
 
         // Setting up components
         this.gallows = new Gallows(gallowsWidth, gallowsHeight, gallowsPosX, gallowsPosY, graphics);

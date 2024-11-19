@@ -138,8 +138,8 @@ public class Controller {
 
     private boolean checkInWord(char letter){
         boolean inWord = false;
-        for(int index = 0; index < word.length(); index++){
-            if(Character.toUpperCase(word.charAt(index)) == Character.toUpperCase(letter)){
+        for(int indice = 0; indice < word.length(); indice++){
+            if(Character.toUpperCase(word.charAt(indice)) == Character.toUpperCase(letter)){
                 inWord = true;
                 break;
             }
@@ -150,9 +150,6 @@ public class Controller {
 
     public void errorHandler(Errors error, String message){
         ErrorHandler.error(error, message);
-        if(error ==  Errors.WORDS_FILE_NOT_FOUND){
-            reset();
-        }
     }
 
 }

@@ -44,7 +44,7 @@ public class Graphics {
     private ImageIcon getGraphic(int width, int height, String path) {
         try {
             ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(path)));
-            Image image = imageIcon.getImage().getScaledInstance((int)(width*0.47), (int) (height*0.47), Image.SCALE_SMOOTH);
+            Image image = imageIcon.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
             return new ImageIcon(image);
         }
         catch (Exception e) {

@@ -18,13 +18,12 @@ public class Gallows {
         panel.setLayout(new FlowLayout());
         panel.setBounds(posX, posY, width, height);
 
-
         // Setting up Graphics
         this.g = g;
 
         label = new JLabel();
-        label.setIcon(g.gallows);
         panel.add(label);
+        label.setIcon(g.gallows);
         label.setVisible(true);
         panel.setVisible(true);
     }
